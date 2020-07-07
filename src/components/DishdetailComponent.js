@@ -29,16 +29,11 @@ class DishDetail extends Component {
 
     renderComments(comments) {
         const commentList = comments.map(comment => {
-            const date = new Date(comment.date)
-            const month = ["Jan", "Feb", "Mar",
-                            "Apr", "May", "Jun",
-                            "Jul", "Aug", "Sep",
-                            "Oct", "Nov", "Dec"]
             return(
                 <li key = {comment.id}>
                     {comment.comment}
                     <br/><br/>
-                    --{comment.author}, {month[date.getMonth()]+ " " + (date.getDate() + 1) + ', ' + date.getFullYear()}
+                    --{comment.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
                     <br/><br/>
                 </li>
             )
